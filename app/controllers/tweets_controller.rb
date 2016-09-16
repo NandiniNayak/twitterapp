@@ -1,8 +1,38 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy,:vote]
 
   # GET /tweets
   # GET /tweets.json
+
+  def vote
+    case current_user.voted_as_when_voted_for(@tweet)
+      when nil
+        @tweet.upvote_by current_user
+      when true
+        @tweet.unvote_by current_user
+        # unvote removes the vote downvote decreases the score--> nandini
+      when false
+        @tweet.upvote_by current_user
+    else
+
+    end
+
+    redirect_to tweets_path
+    # method upvote_by and current_user passed as parameter
+    # @tweet.upvote_by(current_user)
+  end
+
+  def downvote
+    # @tweet.downvote_by current_user
+    # redirect_to tweets_path
+  end
+
+  # def nandini(word)
+  #   puts "Nadnini is word"
+  # end
+  #
+  # nandini("best")
+
   def index
     @tweets = Tweet.all
   end
