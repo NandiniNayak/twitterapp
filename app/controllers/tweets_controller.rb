@@ -25,6 +25,10 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
+
+  # Set tweet user id to current user -> modified by nandini ->
+  # without if current_user: user_id will be assigned when user
+  # not logged in and that results in nil entry
     @tweet.user_id = current_user.id if current_user
 
     respond_to do |format|
