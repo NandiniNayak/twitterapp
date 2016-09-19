@@ -6,7 +6,10 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'devise'
+
 gem 'simple_hashtag'
+# use acts_as_follower to implement following/follow reationship
+# gem "acts_as_follower"
 
 # use acts as votable to enable likes and following for users
 gem 'acts_as_votable'

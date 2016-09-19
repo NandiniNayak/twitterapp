@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tweets
   acts_as_voter
+  # acts_as_followable
+  # acts_as_follower
 # nandini ->  without acts as voter we get nil error for @user.voted_as_when_voted_for
 end

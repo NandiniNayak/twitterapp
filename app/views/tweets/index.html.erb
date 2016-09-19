@@ -17,11 +17,9 @@
     <% @tweets.each do |tweet| %>
       <tr>
         <td><%= linkify_hashtags(tweet.message) %></td>
+        <td><%=tweet.user_id%><td>
         <td><%= tweet.user.email %></td>
-        <!-- <td><%= link_to like_tweet_path(tweet),method: :put do %>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-        <%end%></td> -->
-
+        <!-- <td><!-%= link_to "follow", follow_tweet_path(tweet.user_id),method: :put%></td> -->
         <td>
           <% if current_user %>
            <%= link_to like_tweet_path(tweet), method: :put do%>

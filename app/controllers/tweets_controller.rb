@@ -22,16 +22,16 @@ class TweetsController < ApplicationController
     # @tweet.upvote_by(current_user)
   end
 
-  def downvote
-    # @tweet.downvote_by current_user
-    # redirect_to tweets_path
-  end
-
   # def nandini(word)
   #   puts "Nadnini is word"
   # end
   #
   # nandini("best")
+
+  # def follow
+  #   @user = User.find(params[:id])
+  #   current_user.follow(@user)
+  # end
 
   def index
     @tweets = Tweet.all
