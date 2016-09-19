@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile,:set_tweets, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles
   # GET /profiles.json
@@ -13,8 +13,14 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profiles/new
+
+  # nandini - if current user profile is nil create a new profile else redirect to the created profile
   def new
-    @profile = Profile.new
+    if current_user.profile.nil?
+      @profile = Profile.new
+    else
+      redirect_to profile_path(current_user.profile.id)
+    end
   end
 
   # GET /profiles/1/edit
@@ -71,8 +77,16 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
     end
 
+
+# nandini - show all tweets that owner of current profile has
+
+    def set_tweets
+      @tweets = Tweet.where(user_id:(Profile.find(params[:id]).user_id))
+      # @tweets = Tweet.where(user_id:(current_user.profile.user_id))
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:bio, :user_id)
+      params.require(:profile).permit(:bio, :user_id, :picture)
     end
 end

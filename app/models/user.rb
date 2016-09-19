@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tweets
+  has_one :profile
   acts_as_voter
   # acts_as_followable
   # acts_as_follower

@@ -4,11 +4,14 @@
   <strong>Bio:</strong>
   <%= @profile.bio %>
 </p>
-
 <p>
-  <strong>User:</strong>
-  <%= @profile.user %>
+  <strong>profile picture:</strong>
+  <%= image_tag(@profile.picture_url) %>
 </p>
+
+<%= @tweets.each do |tweet|%>
+  <%=tweet.message%>
+<%end%>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
