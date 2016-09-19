@@ -2,7 +2,7 @@
 
 <p>
   <strong>Message:</strong>
-  <%= @tweet.message %>
+  <%= linkify_hashtags(@tweet.message) %>
 </p>
 
 <p>

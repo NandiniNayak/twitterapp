@@ -16,7 +16,7 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.message %></td>
+        <td><%= linkify_hashtags(tweet.message) %></td>
         <td><%= tweet.user.email %></td>
         <!-- <td><%= link_to like_tweet_path(tweet),method: :put do %>
           <i class="fa fa-heart" aria-hidden="true"></i>
@@ -25,10 +25,10 @@
         <td>
           <% if current_user %>
            <%= link_to like_tweet_path(tweet), method: :put do%>
-             <%= current_user.voted_as_when_voted_for(tweet) == true ? fa_icon("heart") : fa_icon("heart-o") %>
+             <%= current_user.voted_as_when_voted_for(tweet) == true ? icon("heart") : icon("heart-o") %>
            <% end %>
            <% else %>
-           <%= fa_icon("heart-o") %>
+           <%= icon("heart-o") %>
            <% end %>
         </td>
         <td><%=tweet.score%>

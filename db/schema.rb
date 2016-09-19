@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916043222) do
+ActiveRecord::Schema.define(version: 20160919025411) do
+
+  create_table "simple_hashtag_hashtaggings", force: :cascade do |t|
+    t.integer "hashtag_id"
+    t.string  "hashtaggable_type"
+    t.integer "hashtaggable_id"
+    t.index ["hashtag_id"], name: "index_simple_hashtag_hashtaggings_on_hashtag_id"
+    t.index ["hashtaggable_id", "hashtaggable_type"], name: "index_hashtaggings_hashtaggable_id_hashtaggable_type"
+  end
+
+  create_table "simple_hashtag_hashtags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name"], name: "index_simple_hashtag_hashtags_on_name"
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.text     "message"
